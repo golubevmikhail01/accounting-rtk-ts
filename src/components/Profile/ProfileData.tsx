@@ -1,13 +1,15 @@
+import {useAppSelector} from "../../app/hooks.ts";
+
 const ProfileData = () => {
-    // TODO: Fetch and display user data
+    const user = useAppSelector(state => state.user)
+
     return (
         <>
-            <p>First Name: ???</p>
-            <p>Last Name: ???</p>
-            <p>Login: ???</p>
+            <p>First Name: {user.firstName}</p>
+            <p>Last Name: {user.lastName}</p>
+            <p>Login: {user.login}</p>
             <ul>
-                <li>User</li>
-                <li>Moderator</li>
+                {user.roles.map(r => <li key={r}>{r}</li>)}
             </ul>
         </>
     );
