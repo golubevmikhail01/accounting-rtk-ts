@@ -14,7 +14,7 @@ const ChangePassword = ({close}: Props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const dispatch = useAppDispatch();
     const [changePassword] = useChangePasswordMutation();
-    const token = useAppSelector(state => state.token)
+    const token = useAppSelector(state => state.token);
     const {data} = useFetchUserQuery(token);
 
     const handleClickSave = async () => {

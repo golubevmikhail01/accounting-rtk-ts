@@ -4,6 +4,7 @@ import type {UserProfile, UserRegister, UserUpdate} from "../../utils/types";
 
 export const accountApi = createApi({
     reducerPath: 'account',
+    tagTypes: ['profile'],
     baseQuery: fetchBaseQuery({baseUrl: base_url}),
     endpoints: builder => ({
         registerUser: builder.mutation<UserProfile, UserRegister>({
@@ -20,7 +21,8 @@ export const accountApi = createApi({
                 headers: {
                     Authorization: token
                 }
-            })
+            }),
+            providesTags: ['profile']
         }),
         updateUser: builder.mutation<UserProfile, { user: UserUpdate, login: string, token: string }>({
             query: ({user, login, token}) => ({
@@ -30,7 +32,8 @@ export const accountApi = createApi({
                 headers: {
                     Authorization: token
                 }
-            })
+            }),
+            invalidatesTags: ['profile']
         }),
         changePassword: builder.mutation<void, { newPassword: string, token: string }>({
             query: ({newPassword, token}) => ({
